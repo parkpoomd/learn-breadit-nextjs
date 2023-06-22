@@ -1,7 +1,9 @@
 import SubscribeLeaveToggle from "@/components/SubscribeLeaveToggle";
+import { buttonVariants } from "@/components/ui/ButtonLoading";
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { format } from "date-fns";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 const Layout = async ({
@@ -52,6 +54,7 @@ const Layout = async ({
 
   return (
     <div className="sm:container max-w-7xl mx-auto h-full pt-12">
+      <div>{slug}</div>
       <div>
         {/* TODO: Button to take us back */}
 
@@ -94,6 +97,15 @@ const Layout = async ({
                   subredditName={subreddit.name}
                 />
               ) : null}
+              <Link
+                className={buttonVariants({
+                  variant: "outline",
+                  className: "w-full mb-6",
+                })}
+                href={`${slug}/submit`}
+              >
+                Create Post
+              </Link>
             </dl>
           </div>
         </div>
